@@ -21,8 +21,8 @@ jobs:
     - name: Log in to GitHub Container Registry
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.GITHUB_USERNAME }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        username: ${{ secrets.SCX_GITHUB_USERNAME }}
+        password: ${{ secrets.SCX_GITHUB_TOKEN }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
