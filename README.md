@@ -1,74 +1,108 @@
-# API Gateway for Microservices
+# API Gateway
 
-This project is an API gateway that integrates three microservices: Student Service, Class Schedule Service, and Notification Service. It handles requests and routes them to the appropriate service.
+This API Gateway routes requests to the appropriate microservices: Student Service, Class Schedule Service, and Notification Service.
 
-## Project Structure
+## Microservices
 
-```
-api-gateway
-├── src
-│   ├── index.js                  # Entry point of the API gateway
-│   ├── routes                    # Contains route definitions
-│   │   ├── studentRoutes.js      # Routes for student operations
-│   │   ├── classScheduleRoutes.js # Routes for class schedule operations
-│   │   └── notificationRoutes.js  # Routes for notification operations
-│   ├── controllers               # Contains request handling logic
-│   │   ├── studentController.js   # Controller for student operations
-│   │   ├── classScheduleController.js # Controller for class schedule operations
-│   │   └── notificationController.js # Controller for notification operations
-│   └── services                  # Contains service logic for each microservice
-│       ├── studentService.js      # Service for student operations
-│       ├── classScheduleService.js # Service for class schedule operations
-│       └── notificationService.js  # Service for notification operations
-├── package.json                  # NPM configuration file
-└── README.md                     # Project documentation
-```
+- **Student Service**: Runs on port `5001`
+- **Class Schedule Service**: Runs on port `5002`
+- **Notification Service**: Runs on port `5003`
 
-## Setup Instructions
+## Endpoints
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd api-gateway
-   ```
+### Students
 
-2. Install dependencies:
-   ```
-   npm install
-   ```
-
-3. Start the API gateway:
-   ```
-   npm start
-   ```
-
-## API Usage
-
-### Student Service
-
-- **Create a Student**
-  - **Endpoint:** POST /students
-  - **Description:** Creates a new student.
+- **Create Student**
+  - **POST** `/students/`
+  - Request Body:
+    ```json
+    {
+      "name": "string",
+      "email": "string",
+      "address": "string",
+      "contactNo": "string",
+      "cgpa": 0
+    }
+    ```
 
 - **Get Student by ID**
-  - **Endpoint:** GET /students/{student_id}
-  - **Description:** Retrieves a student by their ID.
+  - **GET** `/students/{student_id}`
 
 - **Get All Students**
-  - **Endpoint:** GET /students/
-  - **Description:** Retrieves a list of all students.
+  - **GET** `/students/`
 
-### Class Schedule Service
+- **Delete Student**
+  - **DELETE** `/students/{student_id}`
 
-- **Manage Class Schedules**
-  - **Endpoints:** (To be defined)
+### Class Schedules
 
-### Notification Service
+- **Create Class Schedule**
+  - **POST** `/class_schedules/`
+  - Request Body:
+    ```json
+    {
+      "teacher_id": "int",
+      "student_id": "int",
+      "time_slot": "string",
+      "schedule_name": "string"
+    }
+    ```
 
-- **Send Notification**
-  - **Endpoint:** POST /notifications
-  - **Description:** Sends notifications, particularly for newly created students.
+- **Get Class Schedule by ID**
+  - **GET** `/class_schedules/{schedule_id}`
 
-## License
+- **Get All Class Schedules**
+  - **GET** `/class_schedules/`
 
-This project is licensed under the MIT License.
+### Teachers
+
+- **Create Teacher**
+  - **POST** `/teachers/`
+  - Request Body:
+    ```json
+    {
+      "name": "string",
+      "email": "string",
+      "address": "string",
+      "contactNo": "string"
+    }
+    ```
+
+- **Get Teacher by ID**
+  - **GET** `/teachers/{teacher_id}`
+
+- **Get All Teachers**
+  - **GET** `/teachers/`
+
+- **Update Teacher**
+  - **PUT** `/teachers/{teacher_id}`
+  - Request Body:
+    ```json
+    {
+      "name": "string",
+      "email": "string",
+      "address": "string",
+      "contactNo": "string"
+    }
+    ```
+
+- **Delete Teacher**
+  - **DELETE** `/teachers/{teacher_id}`
+
+## Notification
+
+- **Send Email**
+  - **POST** `/send-email/`
+  - Request Body:
+    ```json
+    {
+      "recipient": "string",
+      "content": "string"
+    }
+    ```
+
+## Running the API Gateway
+
+1. Install dependencies:
+   ```sh
+   pip install -r requirements.txt
