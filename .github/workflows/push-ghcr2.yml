@@ -31,4 +31,4 @@ jobs:
         context: .
         push: true
         tags: |
-          ghcr.io/scholarx-assessment/api-gateway:latest
+          ghcr.io/scholarx-assesment/api-gateway:latest
