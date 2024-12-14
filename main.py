@@ -4,9 +4,9 @@ import requests
 
 app = FastAPI(title="API Gateway")
 
-STUDENT_SERVICE_URL = "http://localhost:5001"
-CLASS_SCHEDULE_SERVICE_URL = "http://localhost:5002"
-EMAIL_SENDER_SERVICE_URL = "http://localhost:5003"
+STUDENT_SERVICE_URL = "http://student-service:5001"
+CLASS_SCHEDULE_SERVICE_URL = "http://class-schedule-service:5002"
+EMAIL_SENDER_SERVICE_URL = "http://notification-service:5003"
 
 
 def forward_request(service_url, path, method="GET", body=None, params=None):
